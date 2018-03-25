@@ -16,11 +16,18 @@ env:
     - BINARYBUILDER_DOWNLOADS_CACHE=downloads
     - BINARYBUILDER_AUTOMATIC_APPLE=true
 sudo: required
-
-# Before anything else, get the latest versions of things
 before_script:
   - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
   - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
-
 script:
   - julia build_tarballs.jl
+deploy:
+  provider: releases
+  api_key:
+    secure: eKCWNhSzAodVqSimN1iJDIgpirJ5s3J/gVv/SVdo+/4459aBg9viDr2ThxwlkGzY+diHF6/tYFtWb3OeQZD479xmYga547l1QwWEsrljMHbQkUyqMx/kosYEV3tSb/K9Bo8UUY3guDeXifIajdtUC42wq/LDJem3myuGR+o8Op2qWQvA1tcMIM3p/VOOlqHXOzN+R3sb1EQ24yp0RkncK5ePp4NklaMbyIdIEPOS0JmIBUIBp+Stl7gUvIAahV8xat4cy3Bvskqp9XaVVoATxM3/STVS93fIhmq0r7h5o8QmXmLWeNTYvbKK+8aRmjsp5RAhDbPCQ3GigjKcqFXWpMCaviksQJkrzU6Wz322RFDf3DGVn0Dzatmy64C8nLw7cfuxh5C8MLylcy9Eq0/937RxDf8lKYDjCrWl/vdGyhe0RP0P3UB2YEnHq+XsmVdPE0lj6leYi4DQRz4RNS3iBOH6MwomYtqlfUwZjBd2IXcjgNS7g1WLTO/rzuvFOTRk9fU8BzXCGKZCkguaRfQm1Ky9bM8BmcODZ2RQhVts83K1IaV91MM2dW7eN4M4/0q5haAcEEo/43SBh0VZMRYyh7I1R7luOtMjQS/gqaQvuz5HbGzEz5mYNahQM++oTmt5EOaIugcg/D1RXZMghJPWxEBSvnccMAz6PM9WugyrOgs=
+  file_glob: true
+  file: products/*
+  skip_cleanup: true
+  on:
+    repo: bicycle1885/XzBuilder
+    tags: true
