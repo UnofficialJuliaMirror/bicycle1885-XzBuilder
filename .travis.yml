@@ -1,8 +1,8 @@
 language: julia
 os:
-  - linux
+- linux
 julia:
-  - 0.7
+- 0.7
 notifications:
   email: false
 git:
@@ -10,20 +10,20 @@ git:
 cache:
   timeout: 1000
   directories:
-    - downloads
+  - downloads
 env:
   global:
-    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
-    - BINARYBUILDER_AUTOMATIC_APPLE=true
+  - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+  - BINARYBUILDER_AUTOMATIC_APPLE=true
 sudo: required
 before_script:
-  - julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/JuliaPackaging/BinaryBuilder.jl", rev="master"))'
+- julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/JuliaPackaging/BinaryBuilder.jl", rev="master"))'
 script:
-  - julia build_tarballs.jl
+- julia build_tarballs.jl
 deploy:
   provider: releases
   api_key:
-    secure: eKCWNhSzAodVqSimN1iJDIgpirJ5s3J/gVv/SVdo+/4459aBg9viDr2ThxwlkGzY+diHF6/tYFtWb3OeQZD479xmYga547l1QwWEsrljMHbQkUyqMx/kosYEV3tSb/K9Bo8UUY3guDeXifIajdtUC42wq/LDJem3myuGR+o8Op2qWQvA1tcMIM3p/VOOlqHXOzN+R3sb1EQ24yp0RkncK5ePp4NklaMbyIdIEPOS0JmIBUIBp+Stl7gUvIAahV8xat4cy3Bvskqp9XaVVoATxM3/STVS93fIhmq0r7h5o8QmXmLWeNTYvbKK+8aRmjsp5RAhDbPCQ3GigjKcqFXWpMCaviksQJkrzU6Wz322RFDf3DGVn0Dzatmy64C8nLw7cfuxh5C8MLylcy9Eq0/937RxDf8lKYDjCrWl/vdGyhe0RP0P3UB2YEnHq+XsmVdPE0lj6leYi4DQRz4RNS3iBOH6MwomYtqlfUwZjBd2IXcjgNS7g1WLTO/rzuvFOTRk9fU8BzXCGKZCkguaRfQm1Ky9bM8BmcODZ2RQhVts83K1IaV91MM2dW7eN4M4/0q5haAcEEo/43SBh0VZMRYyh7I1R7luOtMjQS/gqaQvuz5HbGzEz5mYNahQM++oTmt5EOaIugcg/D1RXZMghJPWxEBSvnccMAz6PM9WugyrOgs=
+    secure: T+b6Ax54C9D1SCSWbGxldvXjjXTfts4t1cz/k4kOnRC+Xcj3pbHgyNLy9tSQqkTNi2VnzcRI98yyAYqptpvttInQ+PCESkH2t4ZP109PGWoDHkOV7elDviUjzPhz4cRL2ITeZX+Jnhpcaft5mhlB7O1a3kmjtSZnQZOGJTxy9zVMtGbZowTjQyvfWCFwjprvWc/l5HKZ+gmF4YZMrf478fQnJV+RF3D2gzA5sKhqfaVHS9WOFyZN8QeGao3Zsy2MPTJx4jtTmqYTrmrDXUtXKeMqC6K/i6iQst83o8yBiVXu8zvGSqEgXmIWgZiDX7EwKWy9vG0fdxVP72uufwNtmKy+Xak5m+FzPX9e7K6lceGrHAzaNgbqZ2YRa72+t8RNsmJwkWDj9DAetloSkIe30/ObmDGq1HCqlMSjFWefOXgWzg8Gibl1qLe6riHzZYZnB8zCvDJeTYA24oVUTp/JZbYQPw5wqYYMUzwNwr/U9WrJZ/O7lgUsag+EgoHFp7pQsCIZLlDaVk5sWfqgh74B8f+/bljlIUf6ZiUQYlNVWC3jZDTI0/6y+AwfuE0x0cMWgXPCzSAC2W2h5T7xUJIkWuFsTNWLhZn6ck8wDJpXQP7k++5YpZ2Ugcr4dQQ4q/aFAZtHXhyVfZVRhIQ6+87zHWU7oGiCsj357tZbbXEDeYI=
   file_glob: true
   file: products/*
   skip_cleanup: true
